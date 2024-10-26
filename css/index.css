@@ -13,7 +13,7 @@ body {
     position: absolute;
     width: 32px; /* Ancho del cursor */
     height: 32px; /* Alto del cursor */
-    background-image: url("../imagenes/cursor/maquia-cursor.cur"); /* Cursor inicial */
+    background-image: url("../imagenes/cursor/correjido-puntero.cur"); /* Cursor inicial */
     background-size: cover;
     pointer-events: none; /* Ignorar eventos en este elemento */
     z-index: 1000; /* Asegúrate de que esté en la parte superior */
