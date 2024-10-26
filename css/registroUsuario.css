@@ -26,6 +26,7 @@ body {
 .contenedor {
     width: 100%;
     max-width: 400px;
+    cursor: none;
 }
 
 .tarjeta {
@@ -37,16 +38,21 @@ body {
     /* Sombra más pronunciada para efecto de relieve */
     cursor: none;
     /* Oculta el cursor dentro de la tarjeta */
+    
 }
 
 
 h2 {
     text-align: center;
+    cursor: none;
+
 }
 
 label {
     display: block;
     margin-top: 10px;
+    cursor: none;
+
 }
 
 input {
@@ -55,6 +61,8 @@ input {
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    cursor: none;
+
 }
 
 button {
@@ -66,10 +74,14 @@ button {
     background-color: #010101;
     color: rgb(237, 219, 19);
     cursor: pointer;
+    cursor: none;
+
 }
 
 button:hover {
     background-color: #0056b3;
+    cursor: none;
+
 }
 
 .inico-redes-sociales {
@@ -77,6 +89,8 @@ button:hover {
     /* Centra el texto y botones */
     margin-top: 20px;
     /* Espacio superior */
+    cursor: none;
+
 }
 
 .social-button {
@@ -89,6 +103,8 @@ button:hover {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    cursor: none;
+
 }
 
 .social-button img {
@@ -98,6 +114,8 @@ button:hover {
     /* Mantiene la relación de aspecto */
     margin-right: 8px;
     /* Espacio entre el logo y el texto */
+    cursor: none;
+
 }
 
 #google {
@@ -105,6 +123,9 @@ button:hover {
     /* Color de fondo para Google */
     color: white;
     /* Color del texto */
+    cursor: none;
+
+
 }
 
 #instagram {
@@ -112,9 +133,12 @@ button:hover {
     /* Color de fondo para Instagram */
     color: rgb(211, 16, 16);
     /* Color del texto */
+    cursor: none;
+
 }
 
 .palabra {
     color: rgb(254, 254, 255);
+    cursor: none;
 
 }
