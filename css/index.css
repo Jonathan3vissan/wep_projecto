@@ -5,9 +5,18 @@ body {
     background-image: url("../imagenes/posible_fondo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    /* Elimina márgenes por defecto */
-    cursor: url('../imagenes/cursor/maquia-cursor.cur'), auto;
+    cursor: none; /* Oculta el cursor del sistema */
+    position: relative;
+}
 
+.click-cursor {
+    position: absolute;
+    width: 32px; /* Ancho del cursor */
+    height: 32px; /* Alto del cursor */
+    background-image: url("../imagenes/cursor/maquia-cursor.cur"); /* Cursor inicial */
+    background-size: cover;
+    pointer-events: none; /* Ignorar eventos en este elemento */
+    z-index: 1000; /* Asegúrate de que esté en la parte superior */
 }
 
 body {
@@ -15,24 +24,22 @@ body {
 }
 
 #contenedor-titulo {
-margin-top: 0%;
-margin-right: 0%;
-margin-left: 0%;
-padding-top: 0%;
-background-color: rgb(35, 29, 28);
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding-top: 0;
+    background-color: rgb(35, 29, 28);
 }
-#titulo{
-    margin-top: 0%;
+
+#titulo {
+    margin-top: 0;
     margin-left: 40%;
     padding: 2%;
     color: rgb(223, 199, 17);
 }
 
-
-
-
 #barra-lateral {
-    margin-top: 0%;
+    margin-top: 0;
     width: 200px;
     height: 60%;
     background-image: url("../imagenes/poste-barber-retocado.png");
@@ -45,7 +52,7 @@ background-color: rgb(35, 29, 28);
 }
 
 #barra-lateral:hover {
-    left: 0
+    left: 0;
 }
 
 .lista {
