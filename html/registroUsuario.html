@@ -4,11 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/registroUsuario.css">
+    <title>Registro de Usuario </title>
 </head>
 
 <body>
-    <h1>en desraollo</h1>
+    <div class="click-cursor" id="cursor-cambia"></div>
+
+    <div class="contenedor">
+        <div class="tarjeta">
+            <h2>Registro</h2>
+            <form id="registration-form">
+                <label for="nombre" class="palabra">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="nombre>
+
+                <label for=" email" class="palabra">Correo Electrónico</label>
+                <input type="email" id="email" name="email" required placeholder="ejemplo@barberia.com">
+
+                <label for="telefono" class="palabra">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="12345678">
+
+                <button type="submit">Registrarse</button>
+            </form>
+
+            <div class="inico-redes-sociales">
+                <p class="palabra">O inicia sesión con:</p>
+                <button class="social-button" id="google">
+                    <img src="../imagenes/logos/logo-google.webp" alt="Iniciar sesión con Google">
+                    Google
+                </button>
+                <button class="social-button" id="instagram">
+                    <img src="../imagenes/logos/logo-instagram.avif" alt="Iniciar sesión con Instagram">
+                    Instagram
+                </button>
+            </div>
+
+            <script src="../js.js"></script>
+            <script src="../js/Cursor.js"></script>
+
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-class Cursor {
+class CustomCursor {
     constructor(cursorElement) {
         this.cursorElement = cursorElement;
         this.isHorizontal = true; // Estado inicial
@@ -41,4 +41,4 @@ class Cursor {
 
 // Inicializa el cursor personalizado
 const moverCursor = document.getElementById("cursor-cambia");
-const customCursor = new Cursor(moverCursor);
+const customCursor = new CustomCursor(moverCursor);
