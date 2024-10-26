@@ -13,45 +13,29 @@ body {
 }
 
 #contenedor-titulo {
-    background-image: url("../imagenes/maquina_corte.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    /* Para posicionar elementos dentro si es necesario */
-    margin-bottom: 0;
-    /* Asegúrate de que no haya margen inferior */
-    height: 30%;
+margin-top: 0%;
+margin-right: 0%;
+margin-left: 0%;
+padding-top: 0%;
+background-color: rgb(35, 29, 28);
+}
+#titulo{
+    margin-top: 0%;
+    margin-left: 40%;
+    padding: 2%;
+    color: rgb(223, 199, 17);
 }
 
-#titulo {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    /* Elimina márgenes del título */
-    padding-left: 25%;
-    /* Alinea el texto a la izquierda */
-    font-size: 90px;
-    -webkit-background-clip: text;
-    /* Solo para WebKit */
-    background-clip: text;
-    color: rgb(150, 146, 146);
-    /* Hacer el texto transparente */
-    background-image: url("../imagenes/fondo_titulo.avif");
-    /* Repite la imagen aquí */
-    background-size: cover;
-    background-position: center;
-    /* position: fixed;*/
-    align-items: center;
-    justify-items: center;
-}
+
 
 
 #barra-lateral {
+    margin-top: 0%;
     width: 200px;
-    height: 300px;
+    height: 60%;
     background-image: url("../imagenes/poste-barber-retocado.png");
     background-size: cover;
-    color: rgb(248, 248, 250);
+    color: rgb(225, 243, 104);
     padding: 20px;
     position: absolute;
     left: -220px;
