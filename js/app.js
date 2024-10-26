@@ -1,7 +1,7 @@
-const Cliente = require("./Cliente");
-const GestorArchivoTXT = require("./GestorArchivosTXT");
-const RegistroDB = require("./RegistroDB");
-const Usuario = require("./Usuario");
+const Cliente = require("../Cliente");
+const GestorArchivoTXT = require("../GestorArchivosTXT");
+const RegistroDB = require("../RegistroDB");
+const Usuario = require("../Usuario");
 
 //-----------------
 const cliente = new Cliente("pedro pedraza", "pedrito@mal", "4512378")

@@ -19,7 +19,6 @@ class GestorArchivoTXT {
     agregarDatoDe(cliente) {
         console.log(typeof cliente);
         console.log(cliente);
-
         this.#guadarDatosDe(cliente, this.#rutaArchivo, "Registro completado");
     }
     /**
@@ -45,14 +44,7 @@ class GestorArchivoTXT {
         });
     }
 
-
-
-
     //nuevo desde aca abajo
-
-
-
-
     /**
         * busca le IDCliente en el archivo y si lo encuentra devuelve true
         * @param {} clienteID 

@@ -6,6 +6,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     /* Elimina márgenes por defecto */
+    cursor: url('../imagenes/cursor/maquia-cursor.cur'), auto;
+
 }
 
 body {

@@ -1,7 +1,5 @@
 const Usuario = require("./Usuario");
 const crypto = require('crypto');
-
-
 class Cliente extends Usuario {
     #IDCliente = "def ID"
     #tamanioID = 10;
@@ -21,7 +19,6 @@ class Cliente extends Usuario {
     actualizarIDClienteCon(IDGenerado) {
         this.#IDCliente = IDGenerado;
     }
-
     /**
      *envia cliente completo a quien lo solicite
      */
@@ -35,7 +32,6 @@ class Cliente extends Usuario {
         };
         return ClienteEnviado
     }
-
     /**
     * genera el hash para el cliente y lo guarda en propiedad hascliente
     */
@@ -46,7 +42,5 @@ class Cliente extends Usuario {
         const fullHash = hash.digest('hex');
         this.#IDCliente = fullHash.substring(0, this.#tamanioID);
     }
-
-
 }
 module.exports = Cliente;
