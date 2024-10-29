@@ -33,7 +33,7 @@ class Cliente extends Usuario {
         return ClienteEnviado
     }
     /**
-    * genera el hash para el cliente y lo guarda en propiedad hascliente
+    * genera el ID para el cliente y lo guarda en propiedad IDcliente
     */
     #generarIDCliente() {
         const randomInput = Math.random().toString();

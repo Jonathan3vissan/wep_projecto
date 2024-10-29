@@ -1,24 +1,20 @@
 body {
-
     display: flex;
     align-items: center;
     justify-content: center;
     background-image: url("../imagenes/fondo_pagina_salon_barber.jpg");
+    position: relative;
     cursor: none;
     /* Oculta el cursor del sistema */
-    position: relative;
-
 }
 
 .click-cursor {
     position: absolute;
     width: 32px;
-    /* Ancho del cursor */
     height: 32px;
-    /* Alto del cursor */
     background-size: cover;
     pointer-events: none;
-    /* Ignorar eventos en este elemento */
+    /* Ignora eventos en este elemento */
     z-index: 1000;
     /* Asegúrate de que esté en la parte superior */
 }
@@ -27,25 +23,21 @@ body {
     width: 100%;
     max-width: 400px;
     cursor: none;
+
 }
 
 .tarjeta {
     background: rgba(255, 252, 252, 0.3);
-    /* Color blanco con 90% de opacidad */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    /* Sombra más pronunciada para efecto de relieve */
     cursor: none;
     /* Oculta el cursor dentro de la tarjeta */
-    
 }
 
-
 h2 {
+    color: #fffffd;
     text-align: center;
-    cursor: none;
-
 }
 
 label {
@@ -73,72 +65,43 @@ button {
     border-radius: 4px;
     background-color: #010101;
     color: rgb(237, 219, 19);
-    cursor: pointer;
     cursor: none;
-
 }
 
 button:hover {
     background-color: #0056b3;
-    cursor: none;
-
 }
 
 .inico-redes-sociales {
     text-align: center;
-    /* Centra el texto y botones */
     margin-top: 20px;
-    /* Espacio superior */
-    cursor: none;
-
 }
 
 .social-button {
     display: flex;
-    /* Usa flexbox para alinear el contenido */
     align-items: center;
-    /* Centra verticalmente el contenido */
     padding: 10px;
     margin: 5px;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
-    cursor: none;
-
 }
 
 .social-button img {
     width: 20px;
-    /* Ajusta el tamaño según tu preferencia */
     height: 20px;
-    /* Mantiene la relación de aspecto */
     margin-right: 8px;
-    /* Espacio entre el logo y el texto */
-    cursor: none;
-
 }
 
 #google {
     background-color: #132961;
-    /* Color de fondo para Google */
     color: white;
-    /* Color del texto */
-    cursor: none;
-
-
 }
 
 #instagram {
-    background-color: #efe3e6;
-    /* Color de fondo para Instagram */
-    color: rgb(211, 16, 16);
-    /* Color del texto */
-    cursor: none;
-
+    background-color: #fffffd;
+    color: rgb(240, 12, 12);
 }
 
 .palabra {
     color: rgb(254, 254, 255);
-    cursor: none;
-
 }
