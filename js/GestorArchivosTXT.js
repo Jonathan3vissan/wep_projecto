@@ -44,32 +44,35 @@ class GestorArchivoTXT {
         });
     }
 
-    //nuevo desde aca abajo
     /**
         * busca le IDCliente en el archivo y si lo encuentra devuelve true
-        * @param {} clienteID 
+        * @param {String} clienteID ingresado por el usuario
         * @returns si encuentra  el IDCLinte dentro del archivo devuelve true
         */
-    /*  identifidicarEl(clienteID) {
-         let claveBuscada = clienteID.IDgenerado;
-         let verificacion = false;
-         fs.readFile(this.nombreArchivo, 'utf8', (error, data) => {
-             if (error) {
-                 console.error("Error al leer el archivo:", error);
-                 return;
-             }
-             const lineas = data.split('\n').map(linea => linea.trim());
-             const encontrada = lineas.some(linea => linea.toLowerCase().includes(claveBuscada.toLowerCase()));
-             if (encontrada) {
-                 console.log("¡Clave encontrada!");
-                 verificacion = true;
-             } else {
-                 console.log("Clave no encontrada.");
-                 verificacion = false;
-             }
-         });
-         return verificacion
-     }
-  */
+    buscarCliente(clienteID) {
+        let claveBuscada = clienteID;
+        let verificacion = false;
+        try {
+
+            fs.readFile(this.#rutaArchivo, 'utf8', (error, data) => {
+                if (error) {
+                    console.error("Error al leer el archivo:", error);
+                    return;
+                }
+                const lineas = data.split('\n').map(linea => linea.trim());
+                const encontrada = lineas.some(linea => linea.toLowerCase().includes(claveBuscada.toLowerCase()));
+                if (encontrada) {
+                    console.log("¡ID Cliente encontrada en base de datos!");
+                    verificacion = true;
+                } else {
+                    console.log(" Verifica el  ID cliente, no encontrada o no existe.");
+                    verificacion = false;
+                }
+            });
+        } catch (error) {
+            console.error(error)
+        }
+        return verificacion
+    }
 }
 module.exports = GestorArchivoTXT;
