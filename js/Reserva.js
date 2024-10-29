@@ -1,3 +1,4 @@
+const GestorArchivoTXT = require("./GestorArchivosTXT");
 const Intermediario = require("./Intermediario");
 
 class Reserva {
@@ -13,10 +14,11 @@ class Reserva {
      * ingresa el id por web y se verifica la existencia de este ID con un cliente registrado 
      * @param {string} cliente ingreasdo por web
      * @param {Intermediario} Intermediario se necarga de mediar con la base de datos 
+     * @param {GestorArchivoTXT} gestorArchivo de TXT
      * @returns cliente existente o cliente no registrado
      */
-    pedirIDoMailA(cliente = "d7e9c43ac9", Intermediario) {
-        return Intermediario.revisarExitenciaDe(cliente) ? "Cliente Existente" : "no existe cliente en los registros"
+    pedirIDoMailA(cliente, Intermediario, gestorArchivo) {
+        return Intermediario.revisarExitenciaDe(cliente, gestorArchivo) ? "Cliente Existente" : "no existe cliente en los registros"
     }
 
 

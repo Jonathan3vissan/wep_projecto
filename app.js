@@ -16,7 +16,7 @@ DB.solicitaDatosA(cliente);
 console.log("recibi en DB", DB.getNuevoCliente());
 DB.enviarClienteA(gestor_archivo)
 
-console.log(reserva.pedirIDoMailA(intermediario));
+console.log(reserva.pedirIDoMailA(cliente.getIDCLiente(), intermediario, gestor_archivo));
 
 
 
