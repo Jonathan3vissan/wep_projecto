@@ -50,29 +50,29 @@ class GestorArchivoTXT {
         * @returns si encuentra  el IDCLinte dentro del archivo devuelve true
         */
     buscarCliente(clienteID) {
-        let claveBuscada = clienteID;
-        let verificacion = false;
-        try {
+        let clienteEncontrado = null;
 
-            fs.readFile(this.#rutaArchivo, 'utf8', (error, data) => {
-                if (error) {
-                    console.error("Error al leer el archivo:", error);
-                    return;
-                }
-                const lineas = data.split('\n').map(linea => linea.trim());
-                const encontrada = lineas.some(linea => linea.toLowerCase().includes(claveBuscada.toLowerCase()));
-                if (encontrada) {
+        fs.readFile(this.#rutaArchivo, 'utf8', (error, data) => {
+            if (error) {
+                console.error("Error al leer el archivo:", error);
+                return; // Termina la ejecución si hay un error
+            }
+            const lineas = data.split('\n').map(linea => linea.trim());
+            lineas.forEach(linea => {
+                if (linea.toLowerCase().includes(clienteID.toLowerCase())) {
                     console.log("¡ID Cliente encontrada en base de datos!");
-                    verificacion = true;
-                } else {
-                    console.log(" Verifica el  ID cliente, no encontrada o no existe.");
-                    verificacion = false;
+                    clienteEncontrado = JSON.parse(linea);
                 }
             });
-        } catch (error) {
-            console.error(error)
-        }
-        return verificacion
+            if (clienteEncontrado) {
+                console.log("Información del cliente:", clienteEncontrado);
+            } else {
+                console.log("Verifica el ID cliente, no encontrada o no existe.");
+            }
+        });
     }
+
+
+
 }
 module.exports = GestorArchivoTXT;

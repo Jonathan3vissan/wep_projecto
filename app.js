@@ -5,7 +5,7 @@ const RegistroDB = require("./js/RegistroDB");
 const Reserva = require("./js/Reserva");
 
 //-----------------
-const cliente = new Cliente("jorge borjes", "borjes@mal", "4512378")
+const cliente = new Cliente("jorge ", "bors@mal", "4512378")
 const DB = new RegistroDB()
 const gestor_archivo = new GestorArchivoTXT()
 const reserva = new Reserva("12/02", "12pm")
@@ -16,7 +16,7 @@ DB.solicitaDatosA(cliente);
 console.log("recibi en DB", DB.getNuevoCliente());
 DB.enviarClienteA(gestor_archivo)
 
-console.log(reserva.pedirIDoMailA(cliente.getIDCLiente(), intermediario, gestor_archivo));
+reserva.pedirIDoMailA("d73dc22c5f", intermediario, gestor_archivo);
 
 
 

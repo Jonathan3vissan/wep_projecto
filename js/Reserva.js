@@ -2,7 +2,7 @@ const GestorArchivoTXT = require("./GestorArchivosTXT");
 const Intermediario = require("./Intermediario");
 
 class Reserva {
-    #IDCliente = "def id";
+    #reserva = {};
     #fecha = "def fecha";
     #hora = "def hora";
     constructor(fecha, hora) {
@@ -10,17 +10,26 @@ class Reserva {
         this.#hora = hora;
     }
 
-    /**
-     * ingresa el id por web y se verifica la existencia de este ID con un cliente registrado 
-     * @param {string} cliente ingreasdo por web
-     * @param {Intermediario} Intermediario se necarga de mediar con la base de datos 
-     * @param {GestorArchivoTXT} gestorArchivo de TXT
-     * @returns cliente existente o cliente no registrado
-     */
-    pedirIDoMailA(cliente, Intermediario, gestorArchivo) {
-        return Intermediario.revisarExitenciaDe(cliente, gestorArchivo) ? "Cliente Existente" : "no existe cliente en los registros"
+
+    inciarReserva(ID, intermediario, gestorArchivo) {
+        this.pedirIDoMailA(ID, intermediario, gestorArchivo)
+
     }
 
+
+    /**
+     * ingresa el id por web y se verifica la existencia de este ID con un cliente registrado 
+     * @param {string} ID ingreasdo por web
+     * @param {Intermediario} Intermediario se necarga de mediar con la base de datos 
+     * @param {GestorArchivoTXT} gestorArchivo de TXT
+     * @returns cliente si esxite
+     */
+    pedirIDoMailA(ID, intermediario, gestorArchivo) {
+        let clienteDeVuelto = "Def"
+        clienteDeVuelto = intermediario.revisarExitenciaDe(ID, gestorArchivo)
+
+        return clienteDeVuelto
+    }
 
 
 

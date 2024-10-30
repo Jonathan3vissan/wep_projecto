@@ -1,5 +1,4 @@
-{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"d7e9c43ac9"}
-{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"f5eae0658a"}
-{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"9c2a624716"}
-{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"06c92bd008"}
-{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"c9aec6c28c"}
+
+{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"a18653a7b2"}
+{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"d73dc22c5f"}
+{"nombre":"jorge ","mail":"bors@mal","telefono":"4512378","IDCliente":"1b03d79550"}
