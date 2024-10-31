@@ -1,6 +1,7 @@
 const { error } = require('console');
 const fs = require('fs');
 const path = require('path');
+const VALOR_DESCONOCIDO = "[Valor null]"
 class GestorArchivoTXT {
     #direccionArchivo;
     #direccionAgendados;
@@ -50,12 +51,11 @@ class GestorArchivoTXT {
         * @returns si encuentra  el IDCLinte dentro del archivo devuelve true
         */
     buscarCliente(clienteID) {
-        let clienteEncontrado = null;
-
+        let clienteEncontrado = VALOR_DESCONOCIDO;
         fs.readFile(this.#rutaArchivo, 'utf8', (error, data) => {
             if (error) {
                 console.error("Error al leer el archivo:", error);
-                return; // Termina la ejecución si hay un error
+                return;
             }
             const lineas = data.split('\n').map(linea => linea.trim());
             lineas.forEach(linea => {
