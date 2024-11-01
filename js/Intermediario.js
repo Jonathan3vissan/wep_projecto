@@ -1,18 +1,19 @@
-const GestorArchivoTXT = require("./GestorArchivosTXT")
+// Intermediario.js
+const GestorArchivoTXT = require("./GestorArchivosTXT");
 
 class Intermediario {
-
-
     /**
-     * recibe el ID client de Reserva pra verificar su exitencia en la base de datos
-     * @param {String} IDCliente ingresado por usuario
-     * @param {GestorArchivoTXT} gestor_archivo realza la tarea de buscar la exitencia del ID
-     *@returns true si se encuentra false si no se encuentra el ID
-    */
-    revisarExitenciaDe(IDCliente, gestor_archivo) {
-        return gestor_archivo.buscarCliente(IDCliente)
+     * Recibe el ID cliente de Reserva para verificar su existencia en la base de datos.
+     * @param {String} IDCliente ingresado por usuario.
+     * @param {GestorArchivoTXT} gestor_archivo realiza la tarea de buscar la existencia del ID.
+     * @returns {Promise<Object|string>} - si encuentra, recibe un objeto cliente, sino un mensaje.
+     */
+    async revisarExitenciaDe(IDCliente, gestor_archivo) {
+        const guardardatos = await gestor_archivo.buscarCliente(IDCliente);
+        console.log("Tipo de dato devuelto:", typeof guardardatos);
+        console.log("Cliente recibido en intermediario:", guardardatos);
+        return guardardatos;
     }
-
-
 }
-module.exports = Intermediario
+
+module.exports = Intermediario;

@@ -1,0 +1,2 @@
+agregue Clase intermediario por que senti la necesidad de que alguien se encargue de realizar las busquedas y demas de los id ,no me parecio que Reserva sea la encargada de buscar IDClientes, cree Clase intermediarion para que se encargue de estsa cosas y a MI parecer,  sea mas logico que halla alguien que medie en acciones que no me parecian que correspondia 100% a esta clase 
+-------------------- ----------------

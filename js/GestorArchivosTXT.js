@@ -1,78 +1,68 @@
-const { error } = require('console');
-const fs = require('fs');
+// GestorArchivosTXT.js
+const fs = require('fs').promises; // Asegúrate de usar fs como promesas
 const path = require('path');
-const VALOR_DESCONOCIDO = "[Valor null]"
+
 class GestorArchivoTXT {
     #direccionArchivo;
-    #direccionAgendados;
     #rutaArchivo;
-    #rutaArchivoAgendados;
+
     constructor() {
         this.#direccionArchivo = "registroCliente.txt";
         this.#rutaArchivo = path.join(__dirname, this.#direccionArchivo);
-        this.#direccionAgendados = "agendaCita.txt";
-        this.#rutaArchivoAgendados = path.join(__dirname, this.#direccionAgendados);
-    }
-    /**
-     * Agrega los datos del cliente al archivo TXT existente
-     * @param {JSON} cliente Datos del cliente a agregar
-     */
-    agregarDatoDe(cliente) {
-        console.log(typeof cliente);
-        console.log(cliente);
-        this.#guadarDatosDe(cliente, this.#rutaArchivo, "Registro completado");
-    }
-    /**
-     * agrega al txt los datos de la agenda
-     * @param {JSON} infoCita con los datos de la reserva
-     */
-    guardarCitaDe(infoCita) {
-        this.#guadarDatosDe(infoCita, this.#rutaArchivoAgendados, "Cita guardado exitomsa ")
-    }
-    /**
-     * guarda un archivo TXT
-     * @param {JSON} datos  recibido
-     * @param {String} ruta de guradado
-     * @param {String} mensaje de guardado exitoso
-     */
-    #guadarDatosDe(datos, ruta, mensaje) {
-        fs.appendFile(ruta, datos + '\n', (err) => {
-            if (err) {
-                console.error('Error al escribir en el archivo:');
-            } else {
-                console.log(mensaje);
-            }
-        });
     }
 
     /**
-        * busca le IDCliente en el archivo y si lo encuentra devuelve true
-        * @param {String} clienteID ingresado por el usuario
-        * @returns si encuentra  el IDCLinte dentro del archivo devuelve true
-        */
-    buscarCliente(clienteID) {
-        let clienteEncontrado = VALOR_DESCONOCIDO;
-        fs.readFile(this.#rutaArchivo, 'utf8', (error, data) => {
-            if (error) {
-                console.error("Error al leer el archivo:", error);
-                return;
-            }
-            const lineas = data.split('\n').map(linea => linea.trim());
-            lineas.forEach(linea => {
-                if (linea.toLowerCase().includes(clienteID.toLowerCase())) {
-                    console.log("¡ID Cliente encontrada en base de datos!");
-                    clienteEncontrado = JSON.parse(linea);
-                }
-            });
+     * Agrega los datos del cliente al archivo TXT existente.
+     * @param {Object} cliente Datos del cliente a agregar.
+     */
+    async agregarDatoDe(cliente) {
+        await this.#guardarDatosDe(cliente, this.#rutaArchivo, "Registro completado");
+    }
+
+    /**
+     * Guarda un archivo TXT.
+     * @param {Object} datos Recibido.
+     * @param {String} ruta de guardado.
+     * @param {String} mensaje de guardado exitoso.
+     */
+    async #guardarDatosDe(datos, ruta, mensaje) {
+        try {
+            await fs.appendFile(ruta, JSON.stringify(datos) + '\n');
+            console.log(mensaje);
+        } catch (err) {
+            console.error('Error al escribir en el archivo:', err);
+        }
+    }
+
+    async buscarCliente(clienteID) {
+        try {
+            const data = await fs.readFile(this.#rutaArchivo, 'utf8');
+            const lineas = data.split('\n').map(linea => linea.trim()).filter(linea => linea !== "");
+    
+            // Busca el cliente en las líneas
+            const clienteEncontrado = lineas
+                .map(linea => {
+                    try {
+                        return JSON.parse(linea);
+                    } catch (err) {
+                        console.error(`Error al parsear línea: "${linea}":`, err.message);
+                        return null; // Devuelve null si no se puede parsear
+                    }
+                })
+                .find(cliente => cliente && cliente.IDCliente.toLowerCase() === clienteID.toLowerCase());
+    
             if (clienteEncontrado) {
-                console.log("Información del cliente:", clienteEncontrado);
+                console.log("¡ID Cliente encontrada en base de datos!");
+                return clienteEncontrado; // Devuelve el cliente encontrado
             } else {
-                console.log("Verifica el ID cliente, no encontrada o no existe.");
+                return 'Cliente no encontrado'; // Mensaje de error
             }
-        });
+        } catch (error) {
+            console.error("Error al leer el archivo:", error);
+            throw new Error("Error en la búsqueda del cliente.");
+        }
     }
-
-
-
+    
 }
+
 module.exports = GestorArchivoTXT;
