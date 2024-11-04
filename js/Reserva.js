@@ -1,5 +1,6 @@
 // Reserva.js
 class Reserva {
+    #clienteRecibido = [];
     #fecha;
     #hora;
 
@@ -8,10 +9,33 @@ class Reserva {
         this.#hora = hora;
     }
 
+    getClienteRecibido() {
+        return this.#clienteRecibido
+    }
+
+    getFecha() {
+        return this.#fecha
+    }
+
+    getHora() {
+        return this.#hora
+    }
+
     async iniciarReserva(ID, intermediario, gestorArchivo) {
         const recibirCliente = await this.pedirIDoMailA(ID, intermediario, gestorArchivo);
         console.log("Cliente recibido:", recibirCliente);
-        // Aquí puedes continuar con la lógica de la reserva
+    }
+
+    async registrarReservaCon(datosRecibidos, gestorArchivo) {
+        let clienteRecibido = datosRecibidos;
+        clienteRecibido.hora = this.getHora();
+        clienteRecibido.fecha = this.getFecha();
+        this.actualizarClienteRecibidosCon(clienteRecibido)
+        this.#enviarReservaA(gestorArchivo)
+    }
+
+    async  #enviarReservaA(gestorArchivo) {
+        gestorArchivo.agendarCitaDe(this.getClienteRecibido())
     }
 
     /**
@@ -25,6 +49,12 @@ class Reserva {
         const clienteDeVuelto = await intermediario.revisarExitenciaDe(ID, gestorArchivo);
         return clienteDeVuelto;
     }
+
+    actualizarClienteRecibidosCon(datos) {
+        this.#clienteRecibido = datos;
+    }
+
+
 }
 
 module.exports = Reserva;

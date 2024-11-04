@@ -1,6 +1,5 @@
 // Intermediario.js
 const GestorArchivoTXT = require("./GestorArchivosTXT");
-
 class Intermediario {
     /**
      * Recibe el ID cliente de Reserva para verificar su existencia en la base de datos.
@@ -10,10 +9,7 @@ class Intermediario {
      */
     async revisarExitenciaDe(IDCliente, gestor_archivo) {
         const guardardatos = await gestor_archivo.buscarCliente(IDCliente);
-        console.log("Tipo de dato devuelto:", typeof guardardatos);
-        console.log("Cliente recibido en intermediario:", guardardatos);
         return guardardatos;
     }
 }
-
 module.exports = Intermediario;

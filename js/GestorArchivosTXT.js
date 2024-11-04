@@ -1,26 +1,50 @@
 // GestorArchivosTXT.js
 const fs = require('fs').promises; // Asegúrate de usar fs como promesas
 const path = require('path');
-
 class GestorArchivoTXT {
+    #direccionArchivoAgenda;
+    #rutaArchivoAgenda;
     #direccionArchivo;
     #rutaArchivo;
-
     constructor() {
         this.#direccionArchivo = "registroCliente.txt";
         this.#rutaArchivo = path.join(__dirname, this.#direccionArchivo);
+        this.#direccionArchivoAgenda = "Agenda.txt";
+        this.#rutaArchivoAgenda = path.join(__dirname, this.#direccionArchivoAgenda);
     }
-
     /**
      * Agrega los datos del cliente al archivo TXT existente.
      * @param {Object} cliente Datos del cliente a agregar.
      */
-    async agregarDatoDe(cliente) {
-        await this.#guardarDatosDe(cliente, this.#rutaArchivo, "Registro completado");
+    async registrarDatoDe(cliente) {
+        await this.#guardarDatosDe(cliente, this.#rutaArchivo, "Registro Exitoso de Cliente");
     }
 
+
+   async agendarCitaDe(cliente) {
+    try {
+        if (!cliente || !cliente.IDCliente) {
+            throw new Error("Cliente o IDCliente no definido");
+        }
+        let verificar = cliente.IDCliente;  // Asegúrate de usar directamente el ID
+        console.log("Verificando IDCliente:", verificar);
+        
+        const clienteExistente = await this.buscarCliente(verificar);  // Llama a buscarCliente con el IDCliente
+        if (!clienteExistente) {
+            console.log('Cliente no encontrado');
+            return;
+        }
+        
+        await this.#guardarDatosDe(cliente, this.#rutaArchivoAgenda, "Reserva Agregada Exitosamente");
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
     /**
-     * Guarda un archivo TXT.
+     * Guarda los datos en un archivo TXT.
      * @param {Object} datos Recibido.
      * @param {String} ruta de guardado.
      * @param {String} mensaje de guardado exitoso.
@@ -33,29 +57,46 @@ class GestorArchivoTXT {
             console.error('Error al escribir en el archivo:', err);
         }
     }
-
+    /**
+     * verifica  la existencia de la reserva en agenda
+     * @param {String} IDCliente recibido de reserva  
+     * @returns 
+     */
+    async verificarExistenciaDeReservaDe(IDCliente) {
+        let reservaVerifcar = JSON.stringify(IDCliente)
+        return await this.buscarCliente(reservaVerifcar)
+    }
+    /**
+     * verifica la existencia del cliente en el TXT
+     * @param {string} clienteID 
+     * @returns el cliente si se encuentra
+     */
     async buscarCliente(clienteID) {
         try {
+            if (!clienteID) {
+                throw new Error("ID de cliente no definido");
+            }
             const data = await fs.readFile(this.#rutaArchivo, 'utf8');
             const lineas = data.split('\n').map(linea => linea.trim()).filter(linea => linea !== "");
-    
-            // Busca el cliente en las líneas
+            
             const clienteEncontrado = lineas
                 .map(linea => {
                     try {
                         return JSON.parse(linea);
                     } catch (err) {
                         console.error(`Error al parsear línea: "${linea}":`, err.message);
-                        return null; // Devuelve null si no se puede parsear
+                        return null;
                     }
                 })
-                .find(cliente => cliente && cliente.IDCliente.toLowerCase() === clienteID.toLowerCase());
+                .find(cliente => cliente && cliente.IDCliente && cliente.IDCliente.toLowerCase() === clienteID.toLowerCase());
+            
+            console.log("Cliente encontrado:", clienteEncontrado);
     
             if (clienteEncontrado) {
-                console.log("¡ID Cliente encontrada en base de datos!");
-                return clienteEncontrado; // Devuelve el cliente encontrado
+                console.log("¡ID Cliente encontrado!");
+                return clienteEncontrado;
             } else {
-                return 'Cliente no encontrado'; // Mensaje de error
+                return null;  // Cambiado para devolver null si no se encuentra
             }
         } catch (error) {
             console.error("Error al leer el archivo:", error);
@@ -64,5 +105,4 @@ class GestorArchivoTXT {
     }
     
 }
-
 module.exports = GestorArchivoTXT;

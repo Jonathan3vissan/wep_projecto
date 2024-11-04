@@ -22,7 +22,7 @@ class RegistroDB {
     enviarClienteA(gestor) {
         let clienteListo = "def"
         clienteListo = JSON.stringify(this.#nuevoCliente)
-        gestor.agregarDatoDe(clienteListo)
+        gestor.registrarDatoDe(clienteListo)
     }
 }
 module.exports = RegistroDB;

@@ -18,16 +18,17 @@ const intermediario = new Intermediario();
     // DB.solicitaDatosA(cliente);
     // console.log("recibi en DB", DB.getNuevoCliente());
     // DB.enviarClienteA(gestor_archivo);
-    
     // Llamamos a pedirIDoMailA y esperamos su resultado
-    const clienteEncontrado = await reserva.pedirIDoMailA("d73dc22c5f", intermediario, gestor_archivo);
-    
+
+    let clienteEncontrado = await reserva.pedirIDoMailA("d73dc22c5f", intermediario, gestor_archivo);
+
     console.log("Cliente recibido:", clienteEncontrado);
 
     // Continúa con la lógica de la reserva si el cliente es encontrado
     if (typeof clienteEncontrado !== 'string') { // Si no es un mensaje de error
         // Lógica para continuar con la reserva
         console.log("Reserva en proceso...");
+        reserva.registrarReservaCon(clienteEncontrado, gestor_archivo)
     } else {
         console.log(clienteEncontrado); // Imprime el mensaje de cliente no encontrado
     }
