@@ -1,5 +1,5 @@
 // Intermediario.js
-const GestorArchivoTXT = require("./GestorArchivosTXT");
+import GestorArchivoTXT from "./GestorArchivosTXT.js";
 class Intermediario {
     /**
      * Recibe el ID cliente de Reserva para verificar su existencia en la base de datos.
@@ -12,4 +12,4 @@ class Intermediario {
         return guardardatos;
     }
 }
-module.exports = Intermediario;
+export default Intermediario;

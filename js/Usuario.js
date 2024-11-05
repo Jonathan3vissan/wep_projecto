@@ -28,4 +28,4 @@ getTelefono(){
 
 
 }
-module.exports = Usuario
+export default Usuario

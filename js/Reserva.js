@@ -1,3 +1,6 @@
+import GestorArchivoTXT from "./GestorArchivosTXT.js";
+import Intermediario from "./Intermediario.js";
+
 // Reserva.js
 class Reserva {
     #clienteRecibido = [];
@@ -21,11 +24,22 @@ class Reserva {
         return this.#hora
     }
 
+    /**
+     * verifica si existe el IDCliente que, ingresa el usuario, para seguir con la reserva
+     * @param {String} ID ingresado por consola 
+     * @param {Intermediario} intermediario se encarga de conectar clases 
+     * @param {GestorArchivoTXT} gestorArchivo que se desean guardar 
+     */
     async iniciarReserva(ID, intermediario, gestorArchivo) {
         const recibirCliente = await this.pedirIDoMailA(ID, intermediario, gestorArchivo);
         console.log("Cliente recibido:", recibirCliente);
     }
 
+    /**
+     * completa todos los datos del cleinte para guardar la reserva 
+     * @param {*} datosRecibidos 
+     * @param {GestorArchivoTXT} gestorArchivo 
+     */
     async registrarReservaCon(datosRecibidos, gestorArchivo) {
         let clienteRecibido = datosRecibidos;
         clienteRecibido.hora = this.getHora();
@@ -57,4 +71,4 @@ class Reserva {
 
 }
 
-module.exports = Reserva;
+export default Reserva;

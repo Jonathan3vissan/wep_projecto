@@ -14,7 +14,7 @@
     <div class="contenedor">
         <div class="tarjeta">
             <h2>Registro</h2>
-            <form id="registration-form">
+            <form id="registration-form"> <!-- Cambié el ID aquí -->
                 <label for="nombre" class="palabra">Nombre</label>
                 <input type="text" id="nombre" name="nombre" required placeholder="nombre">
 
@@ -38,10 +38,12 @@
                     Instagram
                 </button>
             </div>
+            <div id="resultado"></div> <!-- Aquí se mostrará el resultado -->
 
             <script src="../js.js"></script>
             <script src="../js/Cursor.js"></script>
-            <script src="../js/Cliente.js"></script>
+            <script type="module" src="../js/Cliente.js"></script>
+            <script type="module" src="../app.js"></script>
         </div>
     </div>
 </body>

@@ -1,7 +1,1 @@
 {"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"a18653a7b2"}
-{"nombre":"jorge borjes","mail":"borjes@mal","telefono":"4512378","IDCliente":"d73dc22c5f"}
-{"nombre":"jorge ","mail":"bors@mal","telefono":"4512378","IDCliente":"1b03d79550"}
-{"nombre":"jorge ","mail":"bors@mal","telefono":"4512378","IDCliente":"25a895dee0"}
-{"nombre":"jorge ","mail":"bors@mal","telefono":"4512378","IDCliente":"7180e4cbc1"}
-{"nombre":"jorge ","mail":"bors@mal","telefono":"4512378","IDCliente":"da15128065"}
-{"nombre":"jorge ","mail":"bors@mal","telefono":"4512378","IDCliente":"1e59d1d554"}

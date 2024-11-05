@@ -1,108 +1,92 @@
-// GestorArchivosTXT.js
-const fs = require('fs').promises; // Asegúrate de usar fs como promesas
-const path = require('path');
 class GestorArchivoTXT {
-    #direccionArchivoAgenda;
-    #rutaArchivoAgenda;
-    #direccionArchivo;
-    #rutaArchivo;
+    #localStorageClientesKey = "clientes";
+    #localStorageAgendaKey = "agenda";
+
     constructor() {
-        this.#direccionArchivo = "registroCliente.txt";
-        this.#rutaArchivo = path.join(__dirname, this.#direccionArchivo);
-        this.#direccionArchivoAgenda = "Agenda.txt";
-        this.#rutaArchivoAgenda = path.join(__dirname, this.#direccionArchivoAgenda);
+        // Verifica si los datos existen, si no los inicializa
+        if (!localStorage.getItem(this.#localStorageClientesKey)) {
+            localStorage.setItem(this.#localStorageClientesKey, JSON.stringify([]));
+        }
+        if (!localStorage.getItem(this.#localStorageAgendaKey)) {
+            localStorage.setItem(this.#localStorageAgendaKey, JSON.stringify([]));
+        }
     }
+
     /**
-     * Agrega los datos del cliente al archivo TXT existente.
+     * Agrega los datos del cliente al almacenamiento.
      * @param {Object} cliente Datos del cliente a agregar.
      */
     async registrarDatoDe(cliente) {
-        await this.#guardarDatosDe(cliente, this.#rutaArchivo, "Registro Exitoso de Cliente");
-    }
-
-
-   async agendarCitaDe(cliente) {
-    try {
-        if (!cliente || !cliente.IDCliente) {
-            throw new Error("Cliente o IDCliente no definido");
-        }
-        let verificar = cliente.IDCliente;  // Asegúrate de usar directamente el ID
-        console.log("Verificando IDCliente:", verificar);
-        
-        const clienteExistente = await this.buscarCliente(verificar);  // Llama a buscarCliente con el IDCliente
-        if (!clienteExistente) {
-            console.log('Cliente no encontrado');
-            return;
-        }
-        
-        await this.#guardarDatosDe(cliente, this.#rutaArchivoAgenda, "Reserva Agregada Exitosamente");
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-
-
-    /**
-     * Guarda los datos en un archivo TXT.
-     * @param {Object} datos Recibido.
-     * @param {String} ruta de guardado.
-     * @param {String} mensaje de guardado exitoso.
-     */
-    async #guardarDatosDe(datos, ruta, mensaje) {
         try {
-            await fs.appendFile(ruta, JSON.stringify(datos) + '\n');
-            console.log(mensaje);
+            const clientes = JSON.parse(localStorage.getItem(this.#localStorageClientesKey));
+            clientes.push(cliente);
+            localStorage.setItem(this.#localStorageClientesKey, JSON.stringify(clientes));
+            console.log("Registro Exitoso de Cliente");
         } catch (err) {
-            console.error('Error al escribir en el archivo:', err);
+            console.error('Error al guardar los datos:', err);
         }
     }
+
     /**
-     * verifica  la existencia de la reserva en agenda
-     * @param {String} IDCliente recibido de reserva  
-     * @returns 
+     * Agrega una reserva a la agenda del cliente en localStorage.
+     * @param {Object} cliente Datos del cliente con su reserva.
      */
-    async verificarExistenciaDeReservaDe(IDCliente) {
-        let reservaVerifcar = JSON.stringify(IDCliente)
-        return await this.buscarCliente(reservaVerifcar)
+    async agendarCitaDe(cliente) {
+        try {
+            if (!cliente || !cliente.IDCliente) {
+                throw new Error("Cliente o IDCliente no definido");
+            }
+            const clienteExistente = await this.buscarCliente(cliente.IDCliente); // Busca el cliente por ID
+            if (!clienteExistente) {
+                console.log('Cliente no encontrado');
+                return;
+            }
+            // Agregar la cita al almacenamiento
+            const agenda = JSON.parse(localStorage.getItem(this.#localStorageAgendaKey));
+            agenda.push(cliente);
+            localStorage.setItem(this.#localStorageAgendaKey, JSON.stringify(agenda));
+            console.log("Reserva Agregada Exitosamente");
+        } catch (error) {
+            console.error("Error al agendar cita:", error);
+        }
     }
+
     /**
-     * verifica la existencia del cliente en el TXT
-     * @param {string} clienteID 
-     * @returns el cliente si se encuentra
+     * Busca un cliente en localStorage por su IDCliente.
+     * @param {String} clienteID El ID del cliente que se busca.
+     * @returns {Object|null} El cliente encontrado o null si no se encuentra.
      */
     async buscarCliente(clienteID) {
         try {
-            if (!clienteID) {
-                throw new Error("ID de cliente no definido");
-            }
-            const data = await fs.readFile(this.#rutaArchivo, 'utf8');
-            const lineas = data.split('\n').map(linea => linea.trim()).filter(linea => linea !== "");
+            const clientes = JSON.parse(localStorage.getItem(this.#localStorageClientesKey));
+            const clienteEncontrado = clientes.find(cliente => cliente.IDCliente && cliente.IDCliente.toLowerCase() === clienteID.toLowerCase());
             
-            const clienteEncontrado = lineas
-                .map(linea => {
-                    try {
-                        return JSON.parse(linea);
-                    } catch (err) {
-                        console.error(`Error al parsear línea: "${linea}":`, err.message);
-                        return null;
-                    }
-                })
-                .find(cliente => cliente && cliente.IDCliente && cliente.IDCliente.toLowerCase() === clienteID.toLowerCase());
-            
-            console.log("Cliente encontrado:", clienteEncontrado);
-    
             if (clienteEncontrado) {
                 console.log("¡ID Cliente encontrado!");
                 return clienteEncontrado;
             } else {
-                return null;  // Cambiado para devolver null si no se encuentra
+                return null;  // Si no se encuentra el cliente, devuelve null
             }
         } catch (error) {
-            console.error("Error al leer el archivo:", error);
+            console.error("Error al leer los datos:", error);
             throw new Error("Error en la búsqueda del cliente.");
         }
     }
-    
+
+    /**
+     * Verifica si existe una reserva de cliente en la agenda.
+     * @param {String} IDCliente El ID del cliente a verificar.
+     * @returns {Object|null} El cliente con la reserva o null si no existe.
+     */
+    async verificarExistenciaDeReservaDe(IDCliente) {
+        try {
+            const agenda = JSON.parse(localStorage.getItem(this.#localStorageAgendaKey));
+            const reservaEncontrada = agenda.find(cliente => cliente.IDCliente === IDCliente);
+            return reservaEncontrada ? reservaEncontrada : null;
+        } catch (error) {
+            console.error("Error al verificar reserva:", error);
+            throw new Error("Error al verificar la existencia de la reserva.");
+        }
+    }
 }
-module.exports = GestorArchivoTXT;
+export default GestorArchivoTXT;

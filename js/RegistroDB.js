@@ -1,5 +1,5 @@
-const Cliente = require("./Cliente");
-const GestorArchivoTXT = require("./GestorArchivosTXT");
+import Cliente from "./Cliente.js";
+import GestorArchivoTXT from "./GestorArchivosTXT.js";
 class RegistroDB {
     #nuevoCliente = "def nuevo cliente "
     /**
@@ -8,12 +8,12 @@ class RegistroDB {
     getNuevoCliente() {
         return this.#nuevoCliente
     }
-/**
- * solicita los datos del cliente
- * @param {Cliente} cliente datos 
- */
-    solicitaDatosA(cliente) {
-        this.#nuevoCliente = cliente.enviarDatos()
+    /**
+     * solicita los datos del cliente
+     * @param {Cliente} cliente datos 
+     */
+    async solicitaDatosA(cliente) {
+        this.#nuevoCliente = await cliente.enviarDatos()
     }
     /**
      * envia los datos del cliente al gestor para que lo guarde en el TXT
@@ -25,4 +25,4 @@ class RegistroDB {
         gestor.registrarDatoDe(clienteListo)
     }
 }
-module.exports = RegistroDB;
+export default RegistroDB;
