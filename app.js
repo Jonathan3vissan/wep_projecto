@@ -33,38 +33,45 @@ document.getElementById("registration-form").addEventListener("submit", async fu
     resultadoDiv.innerText = "Procesando registro...";  // Mensaje mientras procesas
     resultadoDiv.classList.add('show');  // Aseguramos que el div sea visible
 
-    // Enviar datos del cliente a la base de datos
-    await DB.solicitaDatosA(cliente);
-    console.log("Cliente recibido en DB:", DB.getNuevoCliente());
+    try {
+        // Enviar datos del cliente a la base de datos
+        await DB.solicitaDatosA(cliente);
+        console.log("Cliente recibido en DB:", DB.getNuevoCliente());
 
-    // Guardar cliente en el archivo
-    DB.enviarClienteA(gestor_archivo);
+        // Guardar cliente en el archivo
+        await DB.enviarClienteA(gestor_archivo);
+
+        // Generar y descargar archivo .txt con los datos del cliente
+        const datosCliente = `Nombre: ${nombre_recibido}\nEmail: ${mail_recibido}\nTeléfono: ${telefono_recibido}`;
+        descargarArchivo(datosCliente);
+
+        // Mostrar mensaje de éxito
+        resultadoDiv.innerText = "Registro realizado con éxito.";
+        resultadoDiv.classList.add('success'); // Estilo de éxito
+    } catch (error) {
+        // Manejo de errores (por si hay algún problema en el proceso)
+        console.error("Error al registrar cliente:", error);
+        resultadoDiv.innerText = "Ocurrió un error al procesar el registro.";
+        resultadoDiv.classList.add('error'); // Estilo de error
+    }
 });
-/*  try {
 
-     // Buscar el cliente por email en la base de datos (o archivo)
-     let clienteEncontrado = await reserva.pedirIDoMailA(mail_recibido, intermediario, gestor_archivo);
+// Función para generar y descargar un archivo .txt con los datos del cliente
+function descargarArchivo(contenido) {
+    // Crear un Blob con el contenido en formato de texto
+    const blob = new Blob([contenido], { type: 'text/plain' });
 
-     // Mostrar el cliente encontrado o mensaje de error
-     console.log("Cliente recibido:", clienteEncontrado);
+    // Crear una URL temporal para el archivo
+    const url = URL.createObjectURL(blob);
 
-     // Si el cliente es encontrado, continúa con el proceso de reserva
-     if (typeof clienteEncontrado !== 'string') {
-         console.log("Reserva en proceso...");
-         console.log("cliente encontrado", clienteEncontrado);
-         reserva.registrarReservaCon(clienteEncontrado, gestor_archivo);
-         resultadoDiv.innerText = "Reserva realizada con éxito.";
-         resultadoDiv.classList.add('success'); // Estilo de éxito
-     } else {
-         // Si el cliente no fue encontrado, muestra el error
-         console.log(clienteEncontrado);
-         resultadoDiv.innerText = clienteEncontrado;  // Muestra el mensaje de error
-         resultadoDiv.classList.add('error'); // Estilo de error
-     }
- } catch (error) {
-     // Manejo de errores (por si hay algún problema en el proceso)
-     console.error("Error al registrar cliente:", error);
-     resultadoDiv.innerText = "Ocurrió un error al procesar el registro.";
-     resultadoDiv.classList.add('error'); // Estilo de error
- }
-}); */
+    // Crear un enlace de descarga
+    const enlaceDescarga = document.createElement("a");
+    enlaceDescarga.href = url;
+    enlaceDescarga.download = "registro_cliente.txt"; // Nombre del archivo que se descargará
+
+    // Simular el clic en el enlace para iniciar la descarga
+    enlaceDescarga.click();
+
+    // Liberar el objeto URL creado para liberar recursos
+    URL.revokeObjectURL(url);
+}
