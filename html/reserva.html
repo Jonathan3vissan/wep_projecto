@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/reserva.css">
+    <link rel="stylesheet" href="../css/reserva.css">
     <title>Reserva</title>
 </head>
+
 <body>
 
-    <h1>EN DESARROLLO</h1>
+    <div class="tarjeta-reserva">
+        <h2>Reserva Ahora</h2>
+        <form id="reserva">
+          <label for="name">Nombre Completo</label>
+          <input type="text" id="name" required />
+      
+          <label for="phone">Teléfono</label>
+          <input type="tel" id="phone" required />
+      
+          <label for="date">Fecha de Reserva</label>
+          <input type="date" id="date" required />
+      
+          <label for="time">Hora de Reserva</label>
+          <select id="time" required>
+            <option value="">Selecciona una hora</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">1:00 PM</option>
+            <option value="14:00">2:00 PM</option>
+            <option value="15:00">3:00 PM</option>
+            <option value="16:00">4:00 PM</option>
+            <option value="17:00">5:00 PM</option>
+          </select>
+      
+          <button type="submit">Confirmar</button>
+        </form>
+      </div>
+      
 
 
-
-    
 
     <script src="../js/RutasHTML.js"></script>
 </body>
+
 </html>
