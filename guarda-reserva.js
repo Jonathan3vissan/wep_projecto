@@ -11,7 +11,7 @@ const gestor_archivo = new GestorArchivoTXT();
 const reserva = new Reserva();
 const intermediario = new Intermediario();
 
-// Función para manejar el envío del formulario de reserva
+// Función para manejar el  envío del formulario de reserva
 document.getElementById("reserva-formulario").addEventListener("submit", async function (event) {
     event.preventDefault(); // Evita que se recargue la página
 
