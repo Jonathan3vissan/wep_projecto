@@ -11,51 +11,6 @@ const gestor_archivo = new GestorArchivoTXT();
 const reserva = new Reserva();
 const intermediario = new Intermediario();
 
-// Función para manejar el envío del formulario de registro
-document.getElementById("formulario-registro").addEventListener("submit", async function (event) {
-    event.preventDefault(); // Evita que se recargue la página
-
-    // Obtener los datos del formulario de registro
-    const nombreRecibido = document.getElementById("nombre-completo-registro").value;
-    const mailRecibido = document.getElementById("email-registro").value;
-    const telefonoRecibido = document.getElementById("telefono-registro").value;
-
-    // Crear un objeto con los datos del cliente
-    const clienteData = {
-        nombre: nombreRecibido,
-        email: mailRecibido,
-        telefono: telefonoRecibido
-    };
-
-    // Guardar los datos de cliente en localStorage
-    localStorage.setItem("Registro-cliente", JSON.stringify(clienteData));
-
-    // Mostrar mensaje de carga o algo similar (opcional)
-    const resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.classList.remove('success', 'error', 'show'); // Limpiar clases previas
-    resultadoDiv.innerText = "Procesando registro...";  // Mensaje mientras procesas
-    resultadoDiv.classList.add('show');  // Aseguramos que el div sea visible
-
-    try {
-        // Crear una nueva instancia de Cliente y enviar datos a la base de datos
-        const cliente = new Cliente(nombreRecibido, mailRecibido, telefonoRecibido);
-        await DB.solicitaDatosA(cliente); // Llamada asincrónica
-        console.log("Cliente recibido en DB:", DB.getNuevoCliente());
-
-        // Guardar cliente en el archivo (si es necesario)
-        DB.enviarClienteA(gestor_archivo);
-
-        // Mostrar mensaje de éxito
-        resultadoDiv.innerText = "Registro realizado con éxito.";
-        resultadoDiv.classList.add('success'); // Estilo de éxito
-    } catch (error) {
-        // Manejo de errores (por si hay algún problema en el proceso)
-        console.error("Error al registrar cliente:", error);
-        resultadoDiv.innerText = "Ocurrió un error al procesar el registro.";
-        resultadoDiv.classList.add('error'); // Estilo de error
-    }
-});
-
 // Función para manejar el envío del formulario de reserva
 document.getElementById("reserva-formulario").addEventListener("submit", async function (event) {
     event.preventDefault(); // Evita que se recargue la página
