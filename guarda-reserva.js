@@ -5,7 +5,7 @@ import Intermediario from "./js/Intermediario.js";
 import RegistroDB from "./js/RegistroDB.js";
 import Reserva from "./js/Reserva.js";
 
-// Instancia de las clases necesarias
+//  Instancia de las clases necesarias
 const DB = new RegistroDB();
 const gestor_archivo = new GestorArchivoTXT();
 const reserva = new Reserva();
