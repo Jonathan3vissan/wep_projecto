@@ -1,6 +1,6 @@
 class Registro {
     constructor() {
-        this.formulario = document.getElementById('registration-form');
+        this.formulario = document.getElementById('formulario-registro');
         this.nombreInput = document.getElementById('nombre');
         this.emailInput = document.getElementById('email');
         this.telefonoInput = document.getElementById('telefono');
