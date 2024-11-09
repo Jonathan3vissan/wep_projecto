@@ -1,8 +1,8 @@
 import Cliente from "./js/Cliente.js";
 
-
 document.getElementById("reserva-formulario").addEventListener("submit", async function (event) {
     event.preventDefault(); 
+
     const nombreRecibido = document.getElementById("nombre-completo-reserva").value;
     const mailRecibido = document.getElementById("email-reserva").value;
     const telefonoRecibido = document.getElementById("telefono-reserva").value;
@@ -16,7 +16,16 @@ document.getElementById("reserva-formulario").addEventListener("submit", async f
         fecha: fechaRecibida,
         hora: horaRecibida
     };
-    localStorage.setItem("reserva", JSON.stringify(reservaData));
+
+    // Obtener el array de reservas almacenado en localStorage (si existe)
+    let reservasGuardadas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+    // Agregar la nueva reserva al array
+    reservasGuardadas.push(reservaData);
+
+    // Guardar el array actualizado en localStorage
+    localStorage.setItem("reservas", JSON.stringify(reservasGuardadas));
+
     const resultadoDiv = document.getElementById('resultado');
     resultadoDiv.classList.remove('success', 'error', 'show'); 
     resultadoDiv.innerText = "Procesando reserva...";  
@@ -35,6 +44,7 @@ document.getElementById("reserva-formulario").addEventListener("submit", async f
         resultadoDiv.classList.add('error'); 
     }
 });
+
 function descargarArchivo(contenido) {
     const blob = new Blob([contenido], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
