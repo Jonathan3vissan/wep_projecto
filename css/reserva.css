@@ -8,8 +8,8 @@ body {
     background-position: center;
     margin: 0;
     font-family: Arial, sans-serif;
-  }
-  
+}
+
 .tarjeta-reserva {
     background-color: #333;
     padding: 30px;
@@ -66,4 +66,22 @@ button:hover {
     border-radius: 5px;
     font-size: 1em;
     box-sizing: border-box;
+}
+
+/* Estilos para el botón de ir al inicio */
+.boton-inicio {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-inicio:hover {
+    background-color: #e6b800;
 }
