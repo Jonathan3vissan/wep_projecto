@@ -1,9 +1,9 @@
 class Registro {
     constructor() {
         this.formulario = document.getElementById('formulario-registro');
-        this.nombreInput = document.getElementById('nombre');
-        this.emailInput = document.getElementById('email');
-        this.telefonoInput = document.getElementById('telefono');
+        this.nombreInput = document.getElementById('nombre-completo-registro');
+        this.emailInput = document.getElementById('email-registro');
+        this.telefonoInput = document.getElementById('telefono-registro');
         
         this.init();
     }
@@ -28,4 +28,7 @@ class Registro {
 }
 
 // Inicializa la clase Registro
-const registro = new Registro();
+document.addEventListener('DOMContentLoaded', () => {
+    const registro = new Registro();
+});
+

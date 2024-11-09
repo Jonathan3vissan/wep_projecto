@@ -49,7 +49,7 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
         console.log("Cliente recibido en DB:", DB.getNuevoCliente());
 
         // Guardar cliente en el archivo (si es necesario)
-        DB.enviarClienteA(gestor_archivo);
+       // DB.enviarClienteA(gestor_archivo);
 
         // Mostrar mensaje de éxito
         resultadoDiv.innerText = "Registro realizado con éxito.";
