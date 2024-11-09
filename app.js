@@ -48,14 +48,11 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
         await DB.solicitaDatosA(cliente); // Llamada asincrónica
         console.log("Cliente recibido en DB:", DB.getNuevoCliente());
 
-        // Guardar cliente en el archivo (si es necesario)
-       // DB.enviarClienteA(gestor_archivo);
-
         // Mostrar mensaje de éxito
         resultadoDiv.innerText = "Registro realizado con éxito.";
         resultadoDiv.classList.add('success'); // Estilo de éxito
     } catch (error) {
-        // Manejo de errores (por si hay algún problema en el proceso)
+     
         console.error("Error al registrar cliente:", error);
         resultadoDiv.innerText = "Ocurrió un error al procesar el registro.";
         resultadoDiv.classList.add('error'); // Estilo de error

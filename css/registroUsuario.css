@@ -20,7 +20,7 @@ body {
 }
 
 .contenedor {
-    width: 100%;
+    width: 60%;
     max-width: 400px;
     cursor: none;
 
@@ -70,11 +70,15 @@ button {
 
 button:hover {
     background-color: #0056b3;
+    cursor: none;
+
 }
 
 .inico-redes-sociales {
     text-align: center;
     margin-top: 20px;
+    cursor: none;
+
 }
 
 .social-button {
@@ -84,26 +88,36 @@ button:hover {
     margin: 5px;
     border: none;
     border-radius: 4px;
+    cursor: none;
+
 }
 
 .social-button img {
     width: 20px;
     height: 20px;
     margin-right: 8px;
+    cursor: none;
+
 }
 
 #google {
     background-color: #132961;
     color: white;
+    cursor: none;
+
 }
 
 #instagram {
     background-color: #fffffd;
     color: rgb(240, 12, 12);
+    cursor: none;
+
 }
 
 .palabra {
     color: rgb(206, 227, 16);
+    cursor: none;
+
 }
 
 #resultado {
@@ -118,12 +132,16 @@ button:hover {
     transition: opacity 0.3s ease;
     opacity: 0;  /* Inicialmente oculto */
     visibility: hidden; /* Inicialmente oculto */
+    cursor: none;
+
 }
 
 /* Mostrar el mensaje cuando hay texto */
 #resultado.show {
     opacity: 1;
     visibility: visible;
+    cursor: none;
+
 }
 
 /* Estilos de mensaje de éxito */
@@ -131,6 +149,8 @@ button:hover {
     background-color: #4CAF50; /* Verde */
     color: white;
     border: 1px solid #45a049;
+    cursor: none;
+
 }
 
 /* Estilos de mensaje de error */
@@ -138,9 +158,10 @@ button:hover {
     background-color: #f44336; /* Rojo */
     color: white;
     border: 1px solid #e53935;
+    cursor: none;
+
 }
 
 .palabra-label{
     color: #f6f6f2;
-    
 }
