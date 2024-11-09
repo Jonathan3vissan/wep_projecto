@@ -1,19 +1,16 @@
 class GestorArchivoTXT {
-    #localStorageClientesKey = "clientes";
-    #localStorageAgendaKey = "agenda";
-
+    #localStorageClientesKey = "Cliente-registrado";
+    #localStorageReservasKey = "Reserva";
     constructor() {
-        // Verifica si los datos existen, si no los inicializa
         if (!localStorage.getItem(this.#localStorageClientesKey)) {
             localStorage.setItem(this.#localStorageClientesKey, JSON.stringify([]));
         }
-        if (!localStorage.getItem(this.#localStorageAgendaKey)) {
-            localStorage.setItem(this.#localStorageAgendaKey, JSON.stringify([]));
+        if (!localStorage.getItem(this.#localStorageReservasKey)) {
+            localStorage.setItem(this.#localStorageReservasKey, JSON.stringify([]));
         }
     }
-
     /**
-     * Agrega los datos del cliente al almacenamiento.
+     * Agrega los datos del cliente al almacenamiento del localStore.
      * @param {Object} cliente Datos del cliente a agregar.
      */
     async registrarDatoDe(cliente) {
@@ -26,7 +23,6 @@ class GestorArchivoTXT {
             console.error('Error al guardar los datos:', err);
         }
     }
-
     /**
      * Agrega una reserva a la agenda del cliente en localStorage.
      * @param {Object} cliente Datos del cliente con su reserva.
@@ -41,21 +37,19 @@ class GestorArchivoTXT {
                 console.log('Cliente no encontrado');
                 return;
             }
-            // Agregar la cita al almacenamiento
-            const agenda = JSON.parse(localStorage.getItem(this.#localStorageAgendaKey));
+            const agenda = JSON.parse(localStorage.getItem(this.#localStorageReservasKey));
             agenda.push(cliente);
-            localStorage.setItem(this.#localStorageAgendaKey, JSON.stringify(agenda));
+            localStorage.setItem(this.#localStorageReservasKey, JSON.stringify(agenda));
             console.log("Reserva Agregada Exitosamente");
         } catch (error) {
             console.error("Error al agendar cita:", error);
         }
     }
 
-    /**
+    /* /**
      * Busca un cliente en localStorage por su IDCliente.
      * @param {String} clienteID El ID del cliente que se busca.
      * @returns {Object|null} El cliente encontrado o null si no se encuentra.
-     */
     async buscarCliente(clienteID) {
         try {
             const clientes = JSON.parse(localStorage.getItem(this.#localStorageClientesKey));
@@ -72,21 +66,23 @@ class GestorArchivoTXT {
             throw new Error("Error en la búsqueda del cliente.");
         }
     }
+    */
 
     /**
      * Verifica si existe una reserva de cliente en la agenda.
      * @param {String} IDCliente El ID del cliente a verificar.
      * @returns {Object|null} El cliente con la reserva o null si no existe.
-     */
+     
     async verificarExistenciaDeReservaDe(IDCliente) {
         try {
-            const agenda = JSON.parse(localStorage.getItem(this.#localStorageAgendaKey));
+            const agenda = JSON.parse(localStorage.getItem(this.#localStorageReservasKey));
             const reservaEncontrada = agenda.find(cliente => cliente.IDCliente === IDCliente);
             return reservaEncontrada ? reservaEncontrada : null;
         } catch (error) {
             console.error("Error al verificar reserva:", error);
             throw new Error("Error al verificar la existencia de la reserva.");
         }
+    } 
+    */
     }
-}
 export default GestorArchivoTXT;

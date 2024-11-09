@@ -1,16 +1,10 @@
 // Asegúrate de que las clases y funciones necesarias estén importadas correctamente
 import Cliente from "./js/Cliente.js";
-import GestorArchivoTXT from "./js/GestorArchivosTXT.js";
-import Intermediario from "./js/Intermediario.js";
 import RegistroDB from "./js/RegistroDB.js";
-import Reserva from "./js/Reserva.js";
 
 // Instancia de las clases necesarias
 const DB = new RegistroDB();
-const gestor_archivo = new GestorArchivoTXT();
 
-const reserva = new Reserva();
-const intermediario = new Intermediario();
 // Función para manejar el envío del formulario de registro
 document.getElementById("formulario-registro").addEventListener("submit", async function (event) {
     event.preventDefault(); // Evita que se recargue la página
