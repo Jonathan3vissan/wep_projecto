@@ -56,3 +56,14 @@ h1 {
 .boton:hover {
     background-color: #B87333; /* Cobre */
 }
+
+/* Centrar la columna de "Acciones" en el encabezado de la tabla */
+#acciones {
+    text-align: center;
+}
+
+/* Centrar el contenido de las celdas de la columna "Acciones" */
+#cuerpo-tabla td:last-child {
+    text-align: center;
+}
+
