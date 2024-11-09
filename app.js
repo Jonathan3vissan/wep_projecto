@@ -27,8 +27,14 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
         telefono: telefonoRecibido
     };
 
-    // Guardar los datos de cliente en localStorage
-    localStorage.setItem("Registro-cliente", JSON.stringify(clienteData));
+    // Obtener los datos de clientes existentes en el localStorage (si existen)
+    let clientes = JSON.parse(localStorage.getItem("Registro-cliente")) || [];  // Si no existe, inicializa un array vacío.
+
+    // Añadir el nuevo cliente al array
+    clientes.push(clienteData);
+
+    // Guardar el array actualizado en localStorage
+    localStorage.setItem("Registro-cliente", JSON.stringify(clientes));
 
     // Mostrar mensaje de carga o algo similar (opcional)
     const resultadoDiv = document.getElementById('resultado');
